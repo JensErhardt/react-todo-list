@@ -29,7 +29,11 @@ class Home extends Component {
   handleAdd(e) {
     e.preventDefault();
     this.setState({
-      todos: [...this.state.todos, {text: this.state.newToDoText}]
+      todos: [
+        ...this.state.todos, 
+        {text: this.state.newToDoText},
+        owner: api.loadUser()
+      ]
     })
   }
 
@@ -45,7 +49,7 @@ class Home extends Component {
         <table>
           <ul>
             {this.state.todos.map(todo, i => {
-              return <ToDoItem key={todo.id} todo={props.todo} />
+              return <ToDoItem key={todo.id+ todo.text} todo={props.todo} />
             })}
           </ul>
         </table>
